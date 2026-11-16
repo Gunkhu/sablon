@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { EmpfilterPipe } from '../shared/pipe/empfilter-pipe';
+import { NameFilterPipe } from '../shared/pipe/name-filter-pipe';
 
 @Component({
-  imports: [FormsModule,EmpfilterPipe],
+  imports: [FormsModule,EmpfilterPipe,NameFilterPipe],
   selector: 'app-employee-component',
   styleUrl: './employee-component.css',
   templateUrl: './employee-component.html',
@@ -11,6 +12,7 @@ import { EmpfilterPipe } from '../shared/pipe/empfilter-pipe';
 export class EmployeeComponent {
 
     actCity!: string;
+    actName!: string;
 
     employees = [
     {id: 1, name: "Peres Béla", city: "Pécs", salary:395 },
@@ -22,4 +24,13 @@ export class EmployeeComponent {
  
   ];
 
+  isFilterVisible = false;
+
+  toogleFilter(){
+    this.isFilterVisible = !this.isFilterVisible
+    if(this.isFilterVisible == false){
+      this.actName = ''
+      this.actCity = ''
+    }
+  }
 }
